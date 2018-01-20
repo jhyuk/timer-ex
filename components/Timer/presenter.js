@@ -9,7 +9,7 @@ import Button from "../Button";
 class Timer extends Component{
     render(){
         // console.log(this.props) 
-        const { isPlaying, elapsedTime, timerDuration } = this.props;
+        const { isPlaying, elapsedTime, timerDuration, startTimer,restartTimer } = this.props;
         return (
             <View style={styles.container}>
                 <StatusBar barStyle={"light-content"} />
@@ -17,10 +17,10 @@ class Timer extends Component{
                     <Text style={styles.time}>25:00</Text>
                 </View>
                 <View style={styles.lower}>
-                    {!isPlaying ? ( <Button iconName="play-circle" onPress={() => alert("it works")} /> ) : null }
-                    {/* {!isPlaying && <Button iconName="play-circle" onPress={() => alert("it works")} /> } */} 
+                    {!isPlaying ? ( <Button iconName="play-circle" onPress={startTimer} /> ) : null }
+                    {/* {!isPlaying && <Button iconName="play-circle" onPress={} /> } */} 
                     {/* 위 두줄은 같은 말이다. null은 무효값이라 없애도 상관없음 */}
-                    {isPlaying ? (<Button iconName="stop-circle" onPress={() => alert("it works")} /> ) : null }
+                    {isPlaying ? (<Button iconName="stop-circle" onPress={restartTimer} /> ) : null }
                 </View>
             </View>
         )
