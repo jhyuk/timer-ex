@@ -6,6 +6,14 @@ import Button from "../Button";
 // presenter 에는 presenter의 역할만 해주고 state나 리덕스 작업은 index.js에서 해주기로하자.
 
 
+function formatTime(time){
+    let minutes = Math.floor(time/60);
+    time -= minutes * 60
+    let seconds = parseInt(time % 60, 10);
+    return `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+}
+
+
 class Timer extends Component{
     // Component life Cycle
     //컴포넌트에 props가 바뀌었을때 자동으로 실행되는 함수 
@@ -29,7 +37,7 @@ class Timer extends Component{
             <View style={styles.container}>
                 <StatusBar barStyle={"light-content"} />
                 <View style={styles.upper}>
-                    <Text style={styles.time}>25:00</Text>
+                    <Text style={styles.time}>{formatTime(timerDuration - elapsedTime)}</Text>
                 </View>
                 <View style={styles.lower}>
                     {!isPlaying ? ( <Button iconName="play-circle" onPress={startTimer} /> ) : null }
