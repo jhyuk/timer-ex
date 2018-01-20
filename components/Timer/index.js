@@ -1,46 +1,25 @@
-import React, { Component } from "react";
-import { View, Text, StyleSheet, StatusBar } from "react-native";
-import Button from "../Button";
+//여기서 리덕스와 state관련 작업을 다 해주고
+//presenter에서는 데이터를 보여주기만 하면 된다.
+
+import { connect } from "react-redux";  //connect는 컴포넌트를 store에 연결하는 것을 도와준다.
+import Timer from "./presenter";
 
 
-class Timer extends Component{
-    render(){
-        return (
-            <View style={styles.container}>
-                <StatusBar barStyle={"light-content"} />
-                <View style={styles.upper}>
-                    <Text style={styles.time}>25:00</Text>
-                </View>
-                <View style={styles.lower}>
-                    <Button iconName="play-circle" onPress={() => alert("it works")} />
-                    <Button iconName="stop-circle" onPress={() => alert("it works")} />
-                </View>
-            </View>
-        )
-    }
+//mapStateToProps함수는 스토어에서 state를 복사해서 컨테이너의 props에 붙여넣는다.
+//즉 state에서 데이터를 가져오는 것을 관리한다.
+//이 state는 Provider store에서 가져온다.
+function mapStateToProps(state){  
+    const { isPlaying, elapsedTime, timerDuration } = state;
+    return {
+        isPlaying,
+        elapsedTime,
+        timerDuration
+    };
 }
 
+export default connect(mapStateToProps)(Timer);  
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#2806ce"
-    },
-    upper: {
-        flex: 2,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    lower: {
-        flex : 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    time: {
-        color: "white",
-        fontSize: 120,
-        fontWeight: "100"
-    }
-});
-
-export default Timer;
+// connect는 
+//isPlaying, elapsedTime, timerDuration를 리턴하는 함수와 
+//presenter에 있는 Timer와 연결한다.
+//그렇기 때문에 presenter에 있는 props에 state가 들어있게 되면서 연결이 된것이다.

@@ -48,8 +48,8 @@ function reducer(state = initialState, action){
             return applyRestartTimer(state);
         case ADD_SECOND:
             return applyADDSecond(state);
-        default:
-            return state;
+        default:            //state와 Timer와 연결하기
+            return state;   //이 타이머가 진행중인지 아닌지 알아야하는데 위의 케이스가 아니면 state를 반환하지 않아 알수 없기 때문에 디폴트로 state를 반환한다.
     } 
 }
 
