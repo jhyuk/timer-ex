@@ -22,7 +22,8 @@ function mapDispatchToProps(dispatch){  //디스패치는 액션을 리듀서로
     return {
         //reducer에서 정의한 startTimer와 dispatch를 묶어준다.
         startTimer: bindActionCreators(timerActions.startTimer, dispatch),
-        restartTimer: bindActionCreators(timerActions.restartTimer, dispatch)
+        restartTimer: bindActionCreators(timerActions.restartTimer, dispatch),
+        addSecond: bindActionCreators(timerActions.addSecond, dispatch)
     };
 }
 
@@ -30,6 +31,6 @@ function mapDispatchToProps(dispatch){  //디스패치는 액션을 리듀서로
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);  
 
 // connect는 
-//isPlaying, elapsedTime, timerDuration를 리턴하는 함수와 
+//isPlaying, elapsedTime, timerDuration를 리턴하는 함수 mapStateToProps와 
 //presenter에 있는 Timer와 연결한다.
 //그렇기 때문에 presenter에 있는 props에 state가 들어있게 되면서 연결이 된것이다.
